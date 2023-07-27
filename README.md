@@ -96,14 +96,14 @@ No specific configuration is required for this workflow to run. However, you nee
 
 #### Description
 
-Dependabot is a tool that checks your project dependencies for any known security vulnerabilities or updates. It can automatically create pull requests to update your dependencies to the latest versions. This GitHub Actions workflow configures Dependabot for your Node.js project. It is highly recommended to keep your dependencies up to date not just to benefit from the latest features and improvements, but also to avoid potential security risks associated with outdated packages.
+Dependabot is a tool that checks your project dependencies for any known security vulnerabilities or updates. It can automatically create pull requests to update your dependencies to the latest versions. This GitHub Actions workflow configures Dependabot for your Python project. It is highly recommended to keep your dependencies up to date not just to benefit from the latest features and improvements, but also to avoid potential security risks associated with outdated packages.
 
 The Dependabot Configuration includes the following tasks:
 
-- Daily check for outdated npm packages
-- Automatic pull request creation for outdated npm packages
-- Optional automatic merge for minor and patch updates of npm packages
-- Security advisories notifications for npm packages.
+- Daily check for outdated packages
+- Automatic pull request creation for outdated packages
+- Optional automatic merge for minor and patch updates of packages
+- Security advisories notifications for packages.
 
 ### Semantic Pull Request - `semantic.yml`
 
