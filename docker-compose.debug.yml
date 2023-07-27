@@ -1,14 +1,11 @@
 version: '3.4'
 
 services:
-  workflowtemplates:
-    image: workflowtemplates
+  pythonworkflowtemplates:
+    image: pythonworkflowtemplates
     build:
       context: .
       dockerfile: ./Dockerfile
-    environment:
-      NODE_ENV: development
+    command: ["sh", "-c", "pip install debugpy -t /tmp && python /tmp/debugpy --wait-for-client --listen 0.0.0.0:5678 main.py "]
     ports:
-      - 3000:3000
-      - 9229:9229
-    command: ["node", "--inspect=0.0.0.0:9229", "index.js"]
+      - 5678:5678
