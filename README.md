@@ -6,7 +6,7 @@ This template repository contains recommended github action workflows for node.j
 
 - [CodeQL Analysis](#codeql-analysis)
 - [CodeQL Report](#codeql-report)
-- [NodeJS Build](#nodejs-build)
+- [Python Build](#python-build)
 - [Docker Build/Publish](#docker-buildpublish)
 - [Conventional Commits](#conventional-commits)
 - [Trivy Container Scan](#trivy-scan)
@@ -26,19 +26,13 @@ Used for static code analysis. See https://codeql.github.com/ for more informati
 
 Used for automatically uploading CodeQL Analysis to Github Artifacts. Useful for providing evidence of scans.
 
-### NodeJS Build - `node.js.yml`
+### Python Build - `python.yml`
 
-#### Prerequistes/Configuration Required
 
-The following commands/scripts must be available in your [package.json](./package.json):
-
-- `npm run build` - should transpile your code from typescript
-- `npm run lint` - should lint your code, for example ESLint
-- `npm run test` - should execute a ci/cd friendly test command (currently set up for Jest)
 
 #### Description
 
-This is the main file for NodeJS builds. This is a matrixed build, meaning it will simultaneously run the steps on multiple versions of NodeJS. For example 16.x,18.x,20.x of NodeJS. We do this to ensure compability with the NodeJS versions that are in maintenance mode, LTS mode, and Current.
+This is the main file for Python builds. This is a matrixed build, meaning it will simultaneously run the steps on multiple versions of Python. For example 3.7,3.8,3.9,3.10,3.11 of Python. We do this to ensure compability with the Python versions.
 
 The build includes the following tasks:
 

@@ -4,8 +4,9 @@
 		{
 			"type": "docker-build",
 			"label": "docker-build",
-			"platform": "node",
+			"platform": "python",
 			"dockerBuild": {
+				"tag": "pythonworkflowtemplates:latest",
 				"dockerfile": "${workspaceFolder}/Dockerfile",
 				"context": "${workspaceFolder}",
 				"pull": true
@@ -25,14 +26,8 @@
 			"dependsOn": [
 				"docker-build"
 			],
-			"dockerRun": {
-				"env": {
-					"DEBUG": "*",
-					"NODE_ENV": "development"
-				}
-			},
-			"node": {
-				"enableDebugging": true
+			"python": {
+				"file": "main.py"
 			}
 		}
 	]

@@ -1,38 +1,23 @@
-#*********************************************************************
-# Copyright (c) Intel Corporation 2023
-# SPDX-License-Identifier: Apache-2.0
-#*********************************************************************/
-FROM node:18-bullseye-slim as builder
-LABEL license='SPDX-License-Identifier: Apache-2.0' \
-    copyright='Copyright (c) Intel Corporation 2023'
-WORKDIR /usr/src/app
-COPY ["tsconfig.json","tsconfig.build.json","package.json", "package-lock.json*", "npm-shrinkwrap.json*", "./"]
+# For more information, please refer to https://aka.ms/vscode-docker-python
+FROM python:3.11-slim
 
-# Install dependencies
-RUN npm ci
+# Keeps Python from generating .pyc files in the container
+ENV PYTHONDONTWRITEBYTECODE=1
 
-COPY src ./src/
+# Turns off buffering for easier container logging
+ENV PYTHONUNBUFFERED=1
 
-# Transpile TS => JS
-RUN npm run build
-RUN npm prune --production
+# Install pip requirements
+COPY requirements.txt .
+RUN python -m pip install -r requirements.txt
 
-# Build the final image from alpine base
-FROM alpine:latest
-ENV NODE_ENV=production
+WORKDIR /app
+COPY . /app
 
-RUN addgroup -g 1000 node && adduser -u 1000 -G node -s /bin/sh -D node 
-RUN apk update && apk add nodejs && rm -rf /var/cache/apk/*
+# Creates a non-root user with an explicit UID and adds permission to access the /app folder
+# For more info, please refer to https://aka.ms/vscode-docker-python-configure-containers
+RUN adduser -u 5678 --disabled-password --gecos "" appuser && chown -R appuser /app
+USER appuser
 
-COPY --from=builder  /usr/src/app/dist /app/dist
-COPY --from=builder  /usr/src/app/node_modules /app/node_modules
-COPY --from=builder  /usr/src/app/package.json /app/package.json
-
-# set the user to non-root
-USER node
-
-# Default Ports Used
-EXPOSE 3000
-
-CMD ["node", "/app/dist/index.js"]
-
+# During debugging, this entry point will be overridden. For more information, please refer to https://aka.ms/vscode-docker-python-debug
+CMD ["python", "main.py"]
