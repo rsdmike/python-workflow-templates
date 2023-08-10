@@ -1,16 +1,18 @@
 # Python Github Action Workflow Templates
 
-This template repository contains recommended github action workflows for node.js based applications written in Typescript (can be adapted to work with javascript only). This repository also contains a lightweight scaffold for a Typescript nodejs app with ESLint (with StandardJS rules) and license header formatting for linting and Jest configured for testing.
+This template repository contains recommended github action workflows for Python based applications. 
 
 ## What Workflows are included?
 
-- [CodeQL Analysis](#codeql-analysis)
-- [CodeQL Report](#codeql-report)
-- [Python Build](#python-build)
-- [Docker Build/Publish](#docker-buildpublish)
-- [Conventional Commits](#conventional-commits)
-- [Trivy Container Scan](#trivy-scan)
-- [Dependabot Configuration](#dependabot-configuration)
+- [CodeQL Analysis](#codeql-analysis---codeql-analysisyml)
+- [CodeQL Report](#codeql-report---codeql-reportyml)
+- [Python Build](#python-build---pythonyml)
+- [Docker Build/Publish -docker-build](#docker-buildpublish--docker-buildyml)
+- [Prerequistes/Configuration Required](#prerequistesconfiguration-required)
+- [Trivy Container Scan](#trivy-container-scan---trivy-scanyml)
+- [Dependabot Configuration](#dependabot-configuration---dependabotyml)
+- [Semantic Pull Request](#semantic-pull-request---semanticyml)
+- [Description](#description)
 
 ### CodeQL Analysis - `codeql-analysis.yml`
 #### Description
@@ -28,16 +30,12 @@ Used for automatically uploading CodeQL Analysis to Github Artifacts. Useful for
 
 ### Python Build - `python.yml`
 
-
-
 #### Description
 
 This is the main file for Python builds. This is a matrixed build, meaning it will simultaneously run the steps on multiple versions of Python. For example 3.7,3.8,3.9,3.10,3.11 of Python. We do this to ensure compability with the Python versions.
 
 The build includes the following tasks:
-
-- Transpiling (for typescript)
-- Linting
+- Linting with Ruff
 - Running Unit Tests
 - Uploading Test Results
 - Uploading Code Coverage results using codecov.io
