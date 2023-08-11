@@ -1,13 +1,6 @@
 {
     "configurations": [
         {
-            "name": "Docker Node.js Launch",
-            "type": "docker",
-            "request": "launch",
-            "preLaunchTask": "docker-run: debug",
-            "platform": "node"
-        },
-        {
             "name": "Docker: Python - General",
             "type": "docker",
             "request": "launch",
